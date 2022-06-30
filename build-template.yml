@@ -5,6 +5,8 @@ parameters:
 - name: 'repository'
   default: ''
   type: string
+variables:
+  tag: '$(Build.BuildId)'
 jobs:
 - job: buildAndPush
   steps:
