@@ -1,3 +1,6 @@
+parameters:
+  repository: ''
+  registry: ''
 stages:
 - stage: Build_and_Push
   displayName: Build and Push Image to Docker Registry
