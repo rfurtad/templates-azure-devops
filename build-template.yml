@@ -1,9 +1,13 @@
 parameters:
-  containerRegistry: ''
-  repository: ''
+- name: 'containerRegistry'
+  default: ''
+  type: string
+- name: 'repository'
+  default: ''
+  type: string
 jobs:
 - job: buildAndPush
-    steps:
+  steps:
     - task: Docker@2      
       inputs:
         containerRegistry: ${{ parameters.containerRegistry }}
