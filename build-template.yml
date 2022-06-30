@@ -5,8 +5,6 @@ parameters:
 - name: 'repository'
   default: ''
   type: string
-variables:
-  tag: '$(Build.BuildId)'
 jobs:
 - job: buildAndPush
   steps:
@@ -17,6 +15,6 @@ jobs:
         command: 'buildAndPush'
         Dockerfile: '**/Dockerfile'
         tags:
-          $(tag)
+          '$(Build.BuildId)'
     - publish: '$(Build.SourcesDirectory)/k8s' # directory where my kubernetes files are stored
       artifact: manifests
