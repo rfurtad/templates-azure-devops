@@ -1,0 +1,36 @@
+ stage: Deploy
+  displayName: Deploy 
+  jobs:
+    - deployment: Deploy
+      displayName: Deploy
+      pool:
+        vmImage: 'ubuntu-latest'
+      environment:
+        name: 'homologacao'
+        resourceName: 'kingflare-dev'
+      strategy:
+        runOnce:
+          deploy:
+            steps:
+            - download: current
+              artifact: manifests
+            - task: KubernetesManifest@0
+              displayName: Create imagePullSecret
+              inputs:
+                  action: createSecret
+                  secretName: $(imagePullSecret)
+                  dockerRegistryEndpoint: $(containerRegistry)
+                  namespace: 'kingflare-dev'
+                  kubernetesServiceConnection: $(kubernetesServiceConnection)
+            - task: KubernetesManifest@0
+              displayName: Deploy to Kubernetes cluster
+              inputs:
+                action: deploy
+                namespace: 'kingflare-dev'
+                kubernetesServiceConnection: $(kubernetesServiceConnection)
+                manifests: |
+                    $(Pipeline.Workspace)/manifests/*.yaml
+                imagePullSecrets: |
+                    $(imagePullSecret)
+                containers: |
+                    $(containerRegistry)/$(repository):$(tag)
