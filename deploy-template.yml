@@ -30,7 +30,7 @@ jobs:
               inputs:
                   action: createSecret
                   secretName: $(imagePullSecret)
-                  dockerRegistryEndpoint: ${{ parameters.containerRegistry }}
+                  dockerRegistryEndpoint: 'Docker Registry'
                   namespace: 'kingflare-dev'
                   kubernetesServiceConnection: ${{ parameters.kubeConnection }}
             - task: KubernetesManifest@0
