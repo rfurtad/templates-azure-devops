@@ -3,7 +3,7 @@ parameters:
   default: ''
   type: string
 - name: 'kubeConnection'
-  default: 'kubernetesServiceConnection'
+  default: 'Kubernetes Connection'
   type: string
 - name: 'repository'
   default: ''
