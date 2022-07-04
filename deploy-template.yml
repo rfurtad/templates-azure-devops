@@ -29,7 +29,7 @@ jobs:
               displayName: Create imagePullSecret
               inputs:
                   action: createSecret
-                  secretName: $(imagePullSecret)
+                  secretName: 'testing'
                   dockerRegistryEndpoint: 'Docker Registry'
                   namespace: 'kingflare-dev'
                   kubernetesServiceConnection: ${{ parameters.kubeConnection }}
