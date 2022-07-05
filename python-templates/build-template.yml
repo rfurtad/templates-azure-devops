@@ -7,7 +7,7 @@ parameters:
   type: string
 - name: 'tag'
   default: ''
-  type: number
+  type: string
 jobs:
 - job: buildAndPush
   pool:
