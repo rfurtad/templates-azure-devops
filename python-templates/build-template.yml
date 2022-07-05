@@ -1,1 +1,26 @@
 
+parameters:
+- name: 'containerRegistry'
+  default: ''
+  type: string
+- name: 'repository'
+  default: ''
+  type: string
+- name: 'tag'
+  default: ''
+  type: number
+jobs:
+- job: buildAndPush
+  pool:
+    vmImage: 'ubuntu-latest'
+  steps:
+    - task: Docker@2      
+      inputs:
+        containerRegistry: ${{ parameters.containerRegistry }}
+        repository: ${{ parameters.repository }}
+        command: 'buildAndPush'
+        Dockerfile: '**/Dockerfile'
+        tags:
+          ${{ parameters.tag }}
+    - publish: '$(Build.SourcesDirectory)/k8s' # directory where my kubernetes files are stored
+      artifact: manifests
