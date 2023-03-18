@@ -44,4 +44,4 @@ jobs:
                 imagePullSecrets: |
                     $(imagePullSecret)
                 containers: |
-                    ${{ parameters.containerRegistry }}/${{ parameters.repository }}:lts
+                    ${{ parameters.containerRegistry }}/${{ parameters.repository }}:${{ parameters.repository }}
