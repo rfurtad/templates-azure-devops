@@ -16,8 +16,9 @@ jobs:
       displayName: Deploy
       pool:
         vmImage: 'ubuntu-latest'
-      enviroment:
-        name: homologacao
+      environment:
+        name: 'homologacao'
+        resourceName: 'rails-project'
       strategy:
         runOnce:
           deploy:
